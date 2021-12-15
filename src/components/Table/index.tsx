@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import MaterialTable from 'material-table'
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
-import AddBox from '@material-ui/icons/AddBox';
 
 
 import { columns, carsData as data } from '../../fixtures/cars'
@@ -15,9 +14,38 @@ const Table: React.FC<any> = () => {
     setCarsData(filteredRows)
   }
 
+  const handleAddRow = (newData: ICarsData) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        setCarsData([...data, newData]);
+        resolve(newData);
+      }, 1000);
+    });
+  };
+
+  const handleRowUpdate = (newData: ICarsData, oldData?: ICarsData): Promise<ICarsData> => {
+    return (
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          const filteredData: ICarsData[] = carsData.filter((car) => car.make !== oldData?.make)
+          setCarsData([...filteredData, newData]);
+          resolve(newData);
+        }, 1000)
+      })
+    );    
+  }
+
   return (
     <MaterialTable
       title="Cars table"
+      options={{
+        filtering: true,
+        sorting: true,
+      }}
+      editable={{
+        onRowAdd: handleAddRow,
+        onRowUpdate: handleRowUpdate,
+      }}
       columns={columns}
       data={carsData}
       actions={[
@@ -25,12 +53,6 @@ const Table: React.FC<any> = () => {
           icon: DeleteOutline,
           tooltip: "Delete Car",
           onClick: (event, rowData: ICarsData | any) => handleDeleteRow(rowData),
-        },
-        {
-          icon: AddBox,
-          tooltip: "Add Car",
-          isFreeAction: true,
-          onClick: (event) => alert("You want to add a new row"),
         },
       ]}
     />

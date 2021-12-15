@@ -1,10 +1,10 @@
 import { ICarsData, IColumns } from "./types";
 
 export const columns: IColumns[] = [
-  { title: 'Make', field: 'make' },
-  { title: 'Model', field: 'model' },
-  { title: 'Colour', field: 'colour' },
-  { title: 'Price', field: 'price' },
+  { title: 'Make', field: 'make', type: 'string', validate: (rowData: ICarsData) => emptyStringValidation(rowData.make) },
+  { title: 'Model', field: 'model', type: 'string', validate: (rowData: ICarsData) => emptyStringValidation(rowData.model)},
+  { title: 'Colour', field: 'colour', type: 'string', validate: (rowData: ICarsData) => emptyStringValidation(rowData.colour) },
+  { title: 'Price', field: 'price', type: 'numeric' },
 ]
 
 export const carsData: ICarsData[] = [
@@ -12,3 +12,7 @@ export const carsData: ICarsData[] = [
   { make: "Ford", model: "Mondeo", colour: "black", price: 32000 },
   { make: "Porsche", model: "Boxter", colour: "blue", price: 72000 }
 ];
+
+const emptyStringValidation = (val: string): boolean => {
+  return val !== ''
+}

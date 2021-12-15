@@ -8,4 +8,6 @@ export interface ICarsData {
 export interface IColumns {
   title: string,
   field: string,
+  type: 'numeric' | 'string',
+  validate?: (arg0: ICarsData) => boolean
 }
