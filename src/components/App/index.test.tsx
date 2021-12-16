@@ -1,9 +1,12 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import App from '.';
+import { shallow } from 'enzyme';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+import Table from '../Table'
+import App from '.'
+
+describe('App component', () => {
+  it('expect table to be rendered', () => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.find(Table)).toHaveLength(1)
+  })
+})

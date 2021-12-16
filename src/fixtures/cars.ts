@@ -13,6 +13,10 @@ export const carsData: ICarsData[] = [
   { make: "Porsche", model: "Boxter", colour: "blue", price: 72000 }
 ];
 
+export const oldCarRow: ICarsData = { make: "Toyota", model: "Celica", colour: "red", price: 35000 }
+
+export const newCarRow: ICarsData = { make: 'Bugatti', model: 'Veyron', colour: 'Pink', price: 1000000 }
+
 const emptyStringValidation = (val: string): boolean => {
   return val !== ''
 }
