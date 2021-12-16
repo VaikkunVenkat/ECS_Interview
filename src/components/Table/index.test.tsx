@@ -1,8 +1,9 @@
 import React from 'react';
 import { shallow } from "enzyme";
+import MaterialTable from 'material-table';
+
 import Table from '.'
 import { IActionProps } from './types';
-import MaterialTable from 'material-table';
 import { carsData, columns, newCarRow, oldCarRow } from '../../fixtures/cars';
 
 describe('Table component', () => {
