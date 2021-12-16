@@ -1,14 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import MaterialTable from 'material-table'
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
-import { filterArrObjects } from '../../utils';
+import Button from '@material-ui/core/Button'
+import { filterArrObjects, getSimilarWords } from '../../utils';
 
 
 import { columns, carsData as data } from '../../fixtures/cars'
 import { ICarsData } from '../../fixtures/types';
+import { IMuseData } from './types';
 
 const Table: React.FC<any> = () => {
   const [carsData, setCarsData] = useState<ICarsData[]>(data)
+  const [museData, setMuseData] = useState<IMuseData>({})
+  const [showMuseData, setShowMuseData] = useState<boolean>(false)
+
+  useEffect(() => {
+    setMuseData({})
+    handleGetWords(carsData)
+  }, [carsData])
+
+  const handleGetWords = (cars: ICarsData[]) => {let totalWords = ''
+    cars.map(async (car: ICarsData, idx: number) => {
+      const words = await getSimilarWords(car.model)
+      totalWords += words.join(', ')
+      setMuseData({...museData, [idx]: totalWords })
+    })
+    
+  }
 
   const handleDeleteRow = (rowData: ICarsData): void => {
     const filteredRows: ICarsData[] = filterArrObjects(carsData, rowData, 'make')
@@ -35,8 +53,8 @@ const Table: React.FC<any> = () => {
       })
     );    
   }
-
   return (
+    <>
     <MaterialTable
       title="Cars table"
       options={{
@@ -57,6 +75,16 @@ const Table: React.FC<any> = () => {
         },
       ]}
     />
+    <Button
+      onClick={() => setShowMuseData((prev) => !prev)}
+      variant='contained'
+    >
+      Show muse data
+    </Button>
+    {showMuseData && Object.values(museData).map((v, i) => {
+      return <div>{v}</div>;
+    })}
+    </>
   );
 };
 

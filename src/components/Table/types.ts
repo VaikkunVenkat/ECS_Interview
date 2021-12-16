@@ -8,3 +8,7 @@ export interface IActionProps {
   onClick: (arg0: any, arg1: ICarsData | undefined) => void
   isFreeAction?: true,
 }
+
+export interface IMuseData {
+  [id: number]: string
+}
