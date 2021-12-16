@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import MaterialTable from 'material-table'
 import DeleteOutline from '@material-ui/icons/DeleteOutline';
+import { filterArrObjects } from '../../utils';
 
 
 import { columns, carsData as data } from '../../fixtures/cars'
@@ -10,7 +11,7 @@ const Table: React.FC<any> = () => {
   const [carsData, setCarsData] = useState<ICarsData[]>(data)
 
   const handleDeleteRow = (rowData: ICarsData): void => {
-    const filteredRows: ICarsData[] = carsData.filter((car) => car.make !== rowData.make)
+    const filteredRows: ICarsData[] = filterArrObjects(carsData, rowData, 'make')
     setCarsData(filteredRows)
   }
 
@@ -27,7 +28,7 @@ const Table: React.FC<any> = () => {
     return (
       new Promise((resolve, reject) => {
         setTimeout(() => {
-          const filteredData: ICarsData[] = carsData.filter((car) => car.make !== oldData?.make)
+          const filteredData: ICarsData[] = filterArrObjects(carsData, oldData, 'make')
           setCarsData([...filteredData, newData]);
           resolve(newData);
         }, 1000)

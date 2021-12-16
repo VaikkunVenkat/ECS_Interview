@@ -1,4 +1,5 @@
 import { ICarsData, IColumns } from "./types";
+import { emptyStringValidation } from "../utils";
 
 export const columns: IColumns[] = [
   { title: 'Make', field: 'make', type: 'string', validate: (rowData: ICarsData) => emptyStringValidation(rowData.make) },
@@ -16,7 +17,3 @@ export const carsData: ICarsData[] = [
 export const oldCarRow: ICarsData = { make: "Toyota", model: "Celica", colour: "red", price: 35000 }
 
 export const newCarRow: ICarsData = { make: 'Bugatti', model: 'Veyron', colour: 'Pink', price: 1000000 }
-
-const emptyStringValidation = (val: string): boolean => {
-  return val !== ''
-}
