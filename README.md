@@ -25,6 +25,10 @@ This app makes use of unit testing through shallow enzyme rendering of different
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+The end-to-end testing suite written in cypress can be access with:
+
+`node_modules/.bin/cypress open` and clicking on `App.spec.ts` in the resulting browser window that opens.
+
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
