@@ -42,6 +42,7 @@ const Table: React.FC<any> = () => {
       options={{
         filtering: true,
         sorting: true,
+        exportButton: true,
       }}
       editable={{
         onRowAdd: handleAddRow,
