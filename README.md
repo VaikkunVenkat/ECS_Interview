@@ -5,10 +5,10 @@ This repo represents [Create React App](https://github.com/facebook/create-react
 The `master` brach contains my main work - and the `feature/with_dataMuse` branch is my attempt at trying to integrate the `dataMuse` api as one of the stretch points.
 
 ## Cloning the repo, checking out the right branch, installing the npm dependencies and starting the server
-`git clone https://github.com/VaikkunVenkat/ECS_Interview.git`
-`cd ECS_Interview`
-`git fetch && git checkout master`
-`npm install && npm start`
+`git clone https://github.com/VaikkunVenkat/ECS_Interview.git`\
+`cd ECS_Interview`\
+`git fetch && git checkout master`\
+`npm install && npm start`\
 
 ## Available Scripts
 
